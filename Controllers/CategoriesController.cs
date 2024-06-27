@@ -1,6 +1,7 @@
 ﻿using CodePulseAPI.Models.Domain;
 using CodePulseAPI.Models.DTO;
 using CodePulseAPI.Repositories.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace CodePulseAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryRequestDto request)
         {
             var category = new Category
@@ -78,6 +80,7 @@ namespace CodePulseAPI.Controllers
 
         [HttpPut]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Writer")]
         public async Task<ActionResult> EditCategory([FromRoute] Guid id, UpdateCategoryRequestDto request)
         {
             var category = new Category
@@ -106,6 +109,7 @@ namespace CodePulseAPI.Controllers
 
         [HttpDelete]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> DeleteCategory([FromRoute] Guid id)
         {
             var category = await categoryRepository.DeleteAsync(id);

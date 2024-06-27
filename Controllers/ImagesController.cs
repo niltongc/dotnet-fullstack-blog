@@ -4,7 +4,7 @@ using CodePulseAPI.Models.Domain;
 using CodePulseAPI.Repositories.Interface;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CodePulse.API.Controllers
+namespace CodePulseAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
